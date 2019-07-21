@@ -1,3 +1,14 @@
-module.exports = {
-  process: content => "module.exports = " + JSON.stringify(content)
-};
+'use strict'
+
+const loaderUtils = require('loader-utils')
+
+module.exports = function (content) {
+  const toArrayBufferPath =
+    loaderUtils.stringifyRequest(this, require.resolve('./to-array-buffer.js'))
+
+  const base64Data = content.toString('base64')
+
+  return `module.exports = require(${toArrayBufferPath})("${base64Data}")`;
+}
+
+module.exports.raw = true
