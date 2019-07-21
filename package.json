@@ -12,6 +12,9 @@
     "test": "jest",
     "precommit": "lint-staged"
   },
+  "dependencies": {
+    "loader-utils": "^1.1.0"
+  },
   "lint-staged": {
     "*.js": ["prettier --write", "git add", "jest --bail --findRelatedTests"],
     "*.json": ["prettier --write", "git add"]
